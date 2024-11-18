@@ -96,26 +96,12 @@
             </button>
         </div>
     </div>
-    <div id="videoDiviOS" style="display: none;" class="ctaDiv">
-        <div style="position:relative; background-color:white; padding:10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.25);">
-            <!-- HTML5 Video Player -->
-            <video id="videoPlayerIOS" style="width: 80vw; height: 80vh;" controls>
-                <source id="videoSourceIOS" src="" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <div id="videoMessage"
-                 style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
-             color: white; font-size: 16px; background-color: rgba(0, 0, 0, 0.6);
-             padding: 5px; border-radius: 5px; text-align: center; white-space: nowrap;
-             background-size: cover; background-position: center;">
-                Tap play to watch the video.
-            </div>
-            <!-- Close Button -->
-            <button onclick="document.getElementById('videoDiviOS').style.display = 'none';"
-                    style="position: absolute; right: 0; bottom: -20px; padding: 10px;">
-                Close
-            </button>
-        </div>
+    <div id="videoDiv">
+        <video id="videoPlayer" controls>
+            <source id="videoSource" src="" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <button class="video-controls" onclick="closeVideo()">Close</button>
     </div>
     <div id="confirmUrlDiv" style="display: none;" class="ctaDiv">
         <div style="position:relative; background-color:white; padding:10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.25); width: 80vw; display:flex; flex-direction: column; align-items: center;">
@@ -335,18 +321,20 @@
             link.download = `Screenshot ${dateString}`;
             link.click();
         }
-        function playVideo(videoUrl) {
-            const videoPlayer = document.getElementById('videoPlayerIOS');
-            const videoSource = document.getElementById('videoSourceIOS');
-            videoSource.src = videoUrl;
+        function playVideo(videoPath) {
+            var videoPlayer = document.getElementById('videoPlayer');
+            var videoSource = document.getElementById('videoSource');
+            // 비디오 경로 설정
+            videoSource.src = videoPath;
+            // 비디오를 로드하고 재생
             videoPlayer.load();
-            // iOS에서는 사용자 상호작용 없이 비디오 재생이 불가능할 수 있음
-            videoPlayer.play().catch((error) => {
-                console.error("Video play error:", error);
-                alert("Please tap to play the video.");
-            });
-            document.getElementById('videoDiviOS').style.display = 'flex';
-            document.getElementById('videoMessage').style.display = 'none';
+            document.getElementById('videoDiv').style.display = "block"; // 비디오를 화면에 표시
+            videoPlayer.play();
+        }
+        function closeVideo() {
+            var videoPlayer = document.getElementById('videoPlayer');
+            videoPlayer.pause(); // 비디오 멈추기
+            document.getElementById('videoDiv').style.display = "none"; // 비디오 숨기기
         }
         window.ITRACKER_GLOBALS = {
             //place global settings here
