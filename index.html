@@ -96,7 +96,7 @@
             </button>
         </div>
     </div>
-    <div id="videoDiv">
+    <div id="videoDiv" style="display: none;">
         <video id="videoPlayer" controls>
             <source id="videoSource" src="" type="video/mp4">
             Your browser does not support the video tag.
@@ -328,7 +328,7 @@
             videoSource.src = videoPath;
             // 비디오를 로드하고 재생
             videoPlayer.load();
-            document.getElementById('videoDiv').style.display = "block"; // 비디오를 화면에 표시
+            document.getElementById('videoDiv').style.display = "flex"; // 비디오를 화면에 표시
             videoPlayer.play();
         }
         function closeVideo() {
