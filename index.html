@@ -96,6 +96,27 @@
             </button>
         </div>
     </div>
+    <div id="videoDiviOS" style="display: none;" class="ctaDiv">
+        <div style="position:relative; background-color:white; padding:10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.25);">
+            <!-- HTML5 Video Player -->
+            <video id="videoPlayerIOS" style="width: 80vw; height: 80vh;" controls>
+                <source id="videoSourceIOS" src="" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div id="videoMessage"
+                 style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+             color: white; font-size: 16px; background-color: rgba(0, 0, 0, 0.6);
+             padding: 5px; border-radius: 5px; text-align: center; white-space: nowrap;
+             background-size: cover; background-position: center;">
+                Tap play to watch the video.
+            </div>
+            <!-- Close Button -->
+            <button onclick="document.getElementById('videoDiviOS').style.display = 'none';"
+                    style="position: absolute; right: 0; bottom: -20px; padding: 10px;">
+                Close
+            </button>
+        </div>
+    </div>
     <div id="confirmUrlDiv" style="display: none;" class="ctaDiv">
         <div style="position:relative; background-color:white; padding:10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.25); width: 80vw; display:flex; flex-direction: column; align-items: center;">
             <p id="confirmUrlText" style="text-align: center; width:80%; overflow: hidden; text-overflow: ellipsis;">Are you sure you want to visit url.com?</p>
@@ -313,6 +334,20 @@
             link.href = dateUrl;
             link.download = `Screenshot ${dateString}`;
             link.click();
+        }
+        function playVideo(videoUrl) {
+            // 비디오 요소 선택
+            const videoPlayer = document.getElementById('videoPlayerIOS');
+            // 비디오 소스 설정
+            const videoSource = document.getElementById('videoSourceIOS');
+            videoSource.src = videoUrl;
+            // 비디오 로드 후 재생
+            videoPlayer.load();  // 새 소스를 로드
+            videoPlayer.play();   // 비디오 재생 시작
+            // 비디오 div 보이기
+            document.getElementById('videoDiviOS').style.display = 'flex';
+            // 메시지 숨기기 (비디오 재생 시작 시)
+            document.getElementById('videoMessage').style.display = 'none';
         }
         window.ITRACKER_GLOBALS = {
             //place global settings here
