@@ -96,18 +96,6 @@
             </button>
         </div>
     </div>
-    <div id="videoDiv" style="display: none;" class="ctaDiv">
-        <div style="position:relative; background-color:white; padding:10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.25);">
-            <video id="videoPlayer" controls>
-                <source id="videoSource" src="" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <button onclick="document.getElementById('videoDiv').style.display = 'none';"
-                    style="position: absolute; right: 0; bottom: -20px; padding: 10px;">
-                Close
-            </button>
-        </div>
-    </div>
     <div id="confirmUrlDiv" style="display: none;" class="ctaDiv">
         <div style="position:relative; background-color:white; padding:10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.25); width: 80vw; display:flex; flex-direction: column; align-items: center;">
             <p id="confirmUrlText" style="text-align: center; width:80%; overflow: hidden; text-overflow: ellipsis;">Are you sure you want to visit url.com?</p>
@@ -325,26 +313,6 @@
             link.href = dateUrl;
             link.download = `Screenshot ${dateString}`;
             link.click();
-        }
-        function playVideo(videoPath) {
-            var videoPlayer = document.getElementById('videoPlayer');
-            var videoSource = document.getElementById('videoSource');
-            // 비디오 경로 설정
-            videoSource.src = videoPath;
-            function onVideoCanPlay() {
-                videoPlayer.play();
-                videoPlayer.removeEventListener('canplay', onVideoCanPlay);
-            }
-            videoPlayer.addEventListener('canplay', onVideoCanPlay);
-            // 비디오를 로드하고 재생
-            videoPlayer.load();
-            document.getElementById('videoDiv').style.display = "flex"; // 비디오를 화면에 표시
-            //videoPlayer.play();
-        }
-        function closeVideo() {
-            var videoPlayer = document.getElementById('videoPlayer');
-            videoPlayer.pause(); // 비디오 멈추기
-            document.getElementById('videoDiv').style.display = "none"; // 비디오 숨기기
         }
         window.ITRACKER_GLOBALS = {
             //place global settings here
