@@ -97,16 +97,6 @@
             </button>
         </div>
     </div>
-    <div id="VideoDiv" style="display:none;">
-        <div style="position:relative; background-color:white; padding:10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.25);">
-            <iframe src="">
-            </iframe>
-            <button onclick="document.getElementById('VideoDiv').style.display = 'none';"
-                    style="position: absolute; right: 0; bottom: -20px; padding: 10px;">
-                Close
-            </button>
-        </div>
-    </div>
     <div id="confirmUrlDiv" style="display: none;" class="ctaDiv">
         <div style="position:relative; background-color:white; padding:10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.25); width: 80vw; display:flex; flex-direction: column; align-items: center;">
             <p id="confirmUrlText" style="text-align: center; width:80%; overflow: hidden; text-overflow: ellipsis;">Are you sure you want to visit url.com?</p>
@@ -324,9 +314,6 @@
             link.href = dateUrl;
             link.download = `Screenshot ${dateString}`;
             link.click();
-        }
-        function playVideo(dateUrl) {
-            document.getElementById("VideoDiv").src = dateUrl;
         }
         window.ITRACKER_GLOBALS = {
             //place global settings here
